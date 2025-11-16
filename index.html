@@ -1,205 +1,1420 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imane Khoussi — Geoinformation Engineering & Full Stack Development</title>
+  <meta name="description" content="Portfolio of Imane Khoussi - Geoinformation Engineering student specializing in GIS, remote sensing, and full-stack development">
+  
+  <!-- Icons CDN (BoxIcons) -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  
+  <style>
+    /* ========== :root variables ========= */
+    :root{
+      --color-primary: #0B3D91;
+      --color-accent: #00B3A6;
+      --color-secondary: #2A9D60;
+      --color-terracotta: #B95A3C;
+      --color-text: #2E3A45;
+      --color-muted: #6B7280;
+      --color-bg: #F6F7F9;
+      --card-bg: #FFFFFF;
+      --max-width: 1200px;
+      
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --shadow-sm: 0 2px 6px rgba(16,24,40,0.06);
+      --shadow-md: 0 8px 24px rgba(16,24,40,0.12);
+      --shadow-lift: 0 12px 32px rgba(16,24,40,0.18);
+      
+      --spacing-xs: 8px;
+      --spacing-sm: 16px;
+      --spacing-md: 24px;
+      --spacing-lg: 48px;
+      --spacing-xl: 72px;
+    }
 
-        <link rel="stylesheet" href="assets/css/styles.css">
+    /* Reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html,body { height:100%; }
+    body{
+      font-family: "Source Sans Pro", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--color-text);
+      background: var(--color-bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+      font-size:16px;
+    }
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    /* Typography */
+    h1,h2,h3 { font-family: "Inter", "Montserrat", system-ui, sans-serif; line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; }
+    h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 600; }
 
-        <title>Portfolio website complete</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">Marlon</a>
-                </div>
+    /* Container */
+    .container{
+      width:100%;
+      max-width: var(--max-width);
+      margin:0 auto;
+      padding: 0 var(--spacing-md);
+    }
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                    </ul>
-                </div>
+    /* Skip link */
+    .skip-link{
+      position: absolute;
+      left:-9999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+      background: var(--color-accent);
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 9999;
+    }
+    .skip-link:focus{
+      left: var(--spacing-sm);
+      top: var(--spacing-sm);
+      width:auto;
+      height:auto;
+    }
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
+    /* Header */
+    .site-header{
+      position: sticky;
+      top:0;
+      z-index:1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(16,24,40,0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: var(--spacing-sm);
+      padding: 16px var(--spacing-md);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .logo{
+      font-weight:700;
+      color: var(--color-primary);
+      text-decoration:none;
+      font-size:1.25rem;
+      transition: color 0.2s;
+    }
+    .logo:hover { color: var(--color-accent); }
+    
+    .nav{ display:flex; align-items:center; }
+    .nav-toggle{
+      background:transparent;
+      border:0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px;
+      cursor:pointer;
+      font-size: 1.5rem;
+      color: var(--color-primary);
+    }
+    .nav-list{
+      display:none;
+      list-style:none;
+      gap: 8px;
+      margin:0;
+      padding:0;
+    }
+    .nav-list.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: var(--spacing-md);
+      box-shadow: var(--shadow-md);
+    }
+    .nav-list .nav-link{
+      text-decoration:none;
+      color:var(--color-text);
+      padding:10px 16px;
+      border-radius:8px;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+    .nav-link:hover, .nav-link.active{
+      background: rgba(11,61,145,0.08);
+      color: var(--color-primary);
+    }
 
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Marlon</span><br> Web Designer</h1>
+    /* Hero Section */
+    .hero{
+      padding: var(--spacing-xl) 0;
+      background: linear-gradient(135deg, rgba(11,61,145,0.03) 0%, rgba(0,179,166,0.05) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(11,61,145,0.02) 49px, rgba(11,61,145,0.02) 50px),
+        repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(11,61,145,0.02) 49px, rgba(11,61,145,0.02) 50px);
+      pointer-events: none;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+      align-items:center;
+      position: relative;
+    }
+    .hero-content { z-index: 1; }
+    .hero-title{
+      margin:0 0 12px 0;
+      color:var(--color-primary);
+      font-weight:700;
+    }
+    .hero-title .accent { color: var(--color-accent); }
+    .hero-subtitle{
+      margin:0 0 16px 0;
+      font-weight:600;
+      color:var(--color-text);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+    }
+    .hero-description{
+      margin:0 0 24px 0;
+      color:var(--color-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .hero-meta{
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--color-muted);
+      font-size: 0.95rem;
+    }
+    .hero-meta i { color: var(--color-primary); margin-right: 6px; }
+    .hero-media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+    .profile-image-placeholder {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 6rem;
+      box-shadow: var(--shadow-lift);
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-image-placeholder::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    }
 
-                    <a href="#" class="button">Contact</a>
-                </div>
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 24px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:600;
+      cursor:pointer;
+      border:2px solid transparent;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    .btn:focus {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+    .btn-primary{
+      background:var(--color-accent);
+      color:#fff;
+    }
+    .btn-primary:hover{
+      background: #009688;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-secondary{
+      background:var(--color-secondary);
+      color:#fff;
+    }
+    .btn-secondary:hover{
+      background: #248F54;
+      transform: translateY(-2px);
+    }
+    .btn-outline{
+      background:transparent;
+      color:var(--color-primary);
+      border:2px solid var(--color-primary);
+    }
+    .btn-outline:hover{
+      background:var(--color-primary);
+      color:#fff;
+      transform: translateY(-2px);
+    }
+    .btn-ghost{
+      background:transparent;
+      color:var(--color-text);
+    }
+    .btn-ghost:hover{
+      background: rgba(0,0,0,0.05);
+    }
 
-                <div class="home__social">
-                    <a href="" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="" class="home__social-icon"><i class='bx bxl-behance' ></i></a>
-                    <a href="" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                </div>
+    /* Sections */
+    .section{
+      padding: var(--spacing-xl) 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .section.reveal-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title{
+      margin:0 0 var(--spacing-lg) 0;
+      color:var(--color-primary);
+      text-align: center;
+      position: relative;
+      padding-bottom: 16px;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 2px;
+    }
 
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="60" href="assets/img/perfil.png"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
+    /* About Section */
+    .about { background: white; }
+    .grid-two{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+    }
+    .about-text p {
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .about-side .card {
+      position: sticky;
+      top: 100px;
+    }
 
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">About</h2>
+    /* Cards */
+    .card{
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--spacing-md);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .card-title{
+      margin:0 0 16px 0;
+      color: var(--color-primary);
+      font-size: 1.25rem;
+    }
+    .facts-list{
+      list-style:none;
+      margin: 0 0 20px 0;
+    }
+    .facts-list li{
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .facts-list li:last-child { border-bottom: none; }
+    .facts-list strong {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
 
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/about.jpg" alt="">
-                    </div>
-                    
-                    <div>
-                        <h2 class="about__subtitle">I'am Marlon</h2>
-                        <p class="about__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate cum expedita quo culpa tempora, assumenda, quis fugiat ut voluptates soluta, aut earum nemo recusandae cumque perferendis! Recusandae alias accusamus atque.</p>           
-                    </div>                                   
-                </div>
-            </section>
+    /* Skills Section */
+    .skills-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap: var(--spacing-md);
+    }
+    .skill-category{
+      background: white;
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+    .skill-category:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .skill-category-title{
+      margin:0 0 16px 0;
+      color: var(--color-primary);
+      font-size: 1.15rem;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--color-accent);
+    }
+    .skill-list{
+      list-style:none;
+    }
+    .skill-item{
+      margin-bottom:16px;
+    }
+    .skill-name {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+    .skill-bar{
+      height:10px;
+      background: #E6EEF3;
+      border-radius: 999px;
+      overflow:hidden;
+    }
+    .skill-fill{
+      height:100%;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 999px;
+      transition: width 1s ease;
+    }
+    .skill-chips{
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip{
+      background: rgba(11,61,145,0.08);
+      color: var(--color-primary);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip:hover {
+      background: var(--color-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .chip.active{
+      background:var(--color-primary);
+      color:#fff;
+      border-color:transparent;
+    }
 
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">Skills</h2>
+    /* Experience Timeline */
+    .experience { background: white; }
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap: var(--spacing-lg);
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
+    }
+    .timeline-item{
+      position: relative;
+      background: var(--color-bg);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.5s ease;
+    }
+    .timeline-item.reveal-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -40px;
+      top: 24px;
+      width: 20px;
+      height: 20px;
+      background: var(--color-accent);
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(0,179,166,0.1);
+    }
+    .experience-title{
+      margin:0 0 8px 0;
+      color: var(--color-primary);
+      font-size: 1.3rem;
+    }
+    .experience-company{
+      margin:0 0 8px 0;
+      color:var(--color-secondary);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .experience-date{
+      display:inline-block;
+      background: rgba(11,61,145,0.1);
+      color: var(--color-primary);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size:0.9rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .experience-bullets{
+      margin:16px 0 16px 20px;
+      line-height: 1.7;
+    }
+    .experience-bullets li {
+      margin-bottom: 8px;
+    }
+    .tech-badges{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .badge{
+      background: white;
+      color: var(--color-primary);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(11,61,145,0.2);
+    }
 
-                <div class="skills__container bd-grid">          
-                    <div>
-                        <h2 class="skills__subtitle">Profesional Skills</h2>
-                        <p class="skills__text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit optio id vero amet, alias architecto consectetur error eum eaque sit.</p>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-html5 skills__icon'></i>
-                                <span class="skills__name">HTML5</span>
-                            </div>
-                            <div class="skills__bar skills__html">
+    /* Projects Section */
+    .project-filters{
+      display:flex;
+      gap:10px;
+      margin-bottom: var(--spacing-lg);
+      flex-wrap:wrap;
+      justify-content: center;
+    }
+    .projects-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-md);
+    }
+    .project-card{
+      background:var(--card-bg);
+      border-radius: var(--radius-md);
+      overflow:hidden;
+      box-shadow: var(--shadow-sm);
+      display:flex;
+      flex-direction:column;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .project-card.reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-card:hover{
+      box-shadow: var(--shadow-lift);
+      transform: translateY(-8px);
+    }
+    .project-media{
+      height:220px;
+      background: linear-gradient(135deg, rgba(11,61,145,0.08) 0%, rgba(0,179,166,0.08) 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-media i {
+      font-size: 4rem;
+      color: var(--color-primary);
+      opacity: 0.3;
+    }
+    .project-image-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .project-body{
+      padding: var(--spacing-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-title{
+      margin:0 0 8px 0;
+      font-size:1.25rem;
+      color: var(--color-primary);
+    }
+    .project-category{
+      display: inline-block;
+      background: var(--color-accent);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .project-description{
+      margin: 0 0 16px 0;
+      color: var(--color-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .project-tech{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .project-actions{
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .project-actions .btn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
 
-                            </div>
-                            <div>
-                                <span class="skills__percentage">95%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-css3 skills__icon'></i>
-                                <span class="skills__name">CSS3</span>
-                            </div>
-                            <div class="skills__bar skills__css">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxl-javascript skills__icon' ></i>
-                                <span class="skills__name">JAVASCRIPT</span>
-                            </div>
-                            <div class="skills__bar skills__js">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">65%</span>
-                            </div>
-                        </div>
-                        <div class="skills__data">
-                            <div class="skills__names">
-                                <i class='bx bxs-paint skills__icon'></i>
-                                <span class="skills__name">UX/UI</span>
-                            </div>
-                            <div class="skills__bar skills__ux">
-                                
-                            </div>
-                            <div>
-                                <span class="skills__percentage">85%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>              
-                        <img src="assets/img/work3.jpg" alt="" class="skills__img">
-                    </div>
-                </div>
-            </section>
+    /* Contact Section */
+    .contact { background: white; }
+    .contact-form-card {
+      padding: var(--spacing-lg);
+    }
+    .form-group{
+      margin-bottom:20px;
+      display:flex;
+      flex-direction:column;
+    }
+    label{
+      font-weight:600;
+      margin-bottom:8px;
+      font-size:0.95rem;
+      color:var(--color-text);
+    }
+    input[type="text"], input[type="email"], select, textarea{
+      padding:12px 16px;
+      border-radius:8px;
+      border:2px solid rgba(16,24,40,0.12);
+      font-size:1rem;
+      background: #fff;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline:none;
+      border-color:var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(0,179,166,0.1);
+    }
+    .form-error{
+      color:#DC2626;
+      font-size:0.9rem;
+      min-height:20px;
+      margin-top: 4px;
+    }
+    .form-actions {
+      margin-top: 24px;
+    }
+    .form-status {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+    }
+    .form-status.success {
+      display: block;
+      background: rgba(42,157,96,0.1);
+      color: var(--color-secondary);
+      border: 1px solid var(--color-secondary);
+    }
+    .contact-info .card {
+      padding: var(--spacing-lg);
+    }
+    .contact-list{
+      list-style: none;
+      margin: 0 0 24px 0;
+    }
+    .contact-list li{
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .contact-list li:last-child { border-bottom: none; }
+    .contact-list i {
+      color: var(--color-accent);
+      font-size: 1.5rem;
+    }
+    .contact-list a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-list a:hover {
+      color: var(--color-accent);
+      text-decoration: underline;
+    }
 
-            <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">Work</h2>
+    /* Footer */
+    .site-footer{
+      border-top:1px solid rgba(16,24,40,0.08);
+      padding: var(--spacing-lg) 0;
+      background: white;
+    }
+    .footer-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap: wrap;
+    }
+    .footer-note {
+      color: var(--color-muted);
+      font-size: 0.95rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-link {
+      color: var(--color-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-link:hover {
+      color: var(--color-primary);
+    }
 
-                <div class="work__container bd-grid">
-                    <a href="" class="work__img">
-                        <img src="assets/img/work1.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work2.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work3.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work4.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work5.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work6.jpg" alt="">
-                    </a>
-                </div>
-            </section>
+    /* Responsive Design */
+    @media(min-width:768px){
+      .nav-toggle{ display:none; }
+      .nav-list{
+        display:flex;
+        flex-direction: row;
+      }
+      .nav-list.open {
+        position: static;
+        box-shadow: none;
+        padding: 0;
+      }
+      .hero-grid{
+        grid-template-columns: 1.2fr 1fr;
+      }
+      .grid-two{
+        grid-template-columns: 2fr 1fr;
+      }
+      .skills-grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .projects-grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-            <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">Contact</h2>
+    @media(min-width:1024px){
+      .skills-grid{
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .projects-grid{
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
-                <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="Enviar" class="contact__button button">
-                    </form>
-                </div>
-            </section>
-        </main>
+    /* Utility */
+    .hidden{ display:none !important; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Marlon</p>
-            <div class="footer__social">
-                <a href="#" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-                <a href="#" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="#" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+  <!-- Header / Navigation -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a class="logo" href="#home">Imane Khoussi</a>
+      <nav class="nav" role="navigation" aria-label="Main Navigation">
+        <button id="nav-toggle" class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class='bx bx-menu'></i>
+        </button>
+        <ul id="primary-nav" class="nav-list">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main id="main" tabindex="-1">
+    <!-- Hero -->
+    <section id="home" class="section hero reveal-visible">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-title">Imane <span class="accent">Khoussi</span></h1>
+          <p class="hero-subtitle">Geoinformation Engineering & Full Stack Development</p>
+          <p class="hero-description">Third-year FST Tangier student combining GIS expertise with full-stack development to build impactful spatial applications. Specialized in mapping interfaces, spatial databases, and automated geoprocessing workflows.</p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn btn-primary"><i class='bx bx-envelope'></i> Contact Me</a>
+            <a href="#projects" class="btn btn-outline"><i class='bx bx-folder-open'></i> View Projects</a>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-item"><i class='bx bx-envelope'></i> khoussi.imane@gmail.com</span>
+            <span class="meta-item"><i class='bx bx-phone'></i> +212 669 89 69 95</span>
+            <span class="meta-item"><i class='bx bx-calendar'></i> Available Feb 2026</span>
+          </div>
+        </div>
+
+        <div class="hero-media" aria-hidden="true">
+          <div class="profile-image-placeholder" role="img" aria-label="Imane Khoussi">
+            <i class='bx bx-map'></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="grid-two">
+          <div class="about-text">
+            <p>I'm a third-year Geoinformation Engineering student at FST Tangier with a strong foundation in both geospatial science and full-stack software development. I combine hands-on experience in GIS and remote sensing with practical development skills to build spatial applications that solve real operational problems.</p>
+            <p>Driven by applied research and end-user impact, I've delivered projects ranging from temporal land-cover analysis to production GIS tools and mobile routing apps. I'm comfortable working across the stack — from geodata acquisition and preprocessing through spatial analysis to designing web and mobile front ends that make geospatial insights actionable.</p>
+            <p>I'm particularly experienced in map-based interfaces, spatial databases (PostGIS), and automated geoprocessing workflows. My technical toolkit spans from QGIS and ArcGIS to modern web frameworks like NestJS, Angular, and React, allowing me to bridge the gap between geospatial data and user-friendly applications.</p>
+          </div>
+          <aside class="about-side">
+            <div class="card">
+              <h3 class="card-title">Quick Facts</h3>
+              <ul class="facts-list">
+                <li><strong>Institution:</strong> FST Tangier</li>
+                <li><strong>Degree:</strong> Geoinformation Engineering</li>
+                <li><strong>Year:</strong> Third Year</li>
+                <li><strong>Location:</strong> Tangier, Morocco</li>
+                <li><strong>Availability:</strong> Feb 2026 (PFE)</li>
+              </ul>
+              <a class="btn btn-secondary" href="https://github.com/imanekhoussi" target="_blank" rel="noopener"><i class='bx bxl-github'></i> GitHub</a>
             </div>
-            <p class="footer__copy">&#169; Bedimcode. All rigths reserved</p>
-        </footer>
+          </aside>
+        </div>
+      </div>
+    </section>
 
+    <!-- Skills -->
+    <section id="skills" class="section skills">
+      <div class="container">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+          <!-- GIS & Remote Sensing -->
+          <div class="skill-category">
+            <h3 class="skill-category-title"><i class='bx bx-map'></i> GIS & Remote Sensing</h3>
+            <ul class="skill-list">
+              <li class="skill-item">
+                <span class="skill-name">QGIS & ArcGIS</span>
+                <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="width:90%"></div></div>
+              </li>
+              <li class="skill-item">
+                <span class="skill-name">PostGIS & Spatial DBs</span>
+                <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="width:85%"></div></div>
+              </li>
+              <li class="skill-item">
+                <span class="skill-name">Remote Sensing (ENVI, Erdas)</span>
+                <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="width:80%"></div></div>
+              </li>
+              <li class="skill-item">
+                <span class="skill-name">Google Earth Engine</span>
+                <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="width:75%"></div></div>
+              </li>
+            </ul>
+          </div>
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+          <!-- Programming -->
+          <div class="skill-category">
+            <h3 class="skill-category-title"><i class='bx bx-code-alt'></i> Programming & Scripting</h3>
+            <ul class="skill-chips">
+              <li class="chip">Python</li>
+              <li class="chip">JavaScript</li>
+              <li class="chip">Java</li>
+              <li class="chip">SQL</li>
+              <li class="chip">HTML/CSS</li>
+              <li class="chip">PyQGIS</li>
+            </ul>
+          </div>
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
-    </body>
+          <!-- Frameworks & Tools -->
+          <div class="skill-category">
+            <h3 class="skill-category-title"><i class='bx bx-layer'></i> Frameworks & Tools</h3>
+            <ul class="skill-chips">
+              <li class="chip">NestJS</li>
+              <li class="chip">Angular</li>
+              <li class="chip">React</li>
+              <li class="chip">Spring Boot</li>
+              <li class="chip">Docker</li>
+              <li class="chip">OpenLayers</li>
+              <li class="chip">Android Studio</li>
+              <li class="chip">Git</li>
+            </ul>
+          </div>
+
+          <!-- Databases -->
+          <div class="skill-category">
+            <h3 class="skill-category-title"><i class='bx bx-data'></i> Databases</h3>
+            <ul class="skill-chips">
+              <li class="chip">PostgreSQL</li>
+              <li class="chip">PostGIS</li>
+              <li class="chip">MySQL</li>
+              <li class="chip">MongoDB</li>
+              <li class="chip">GeoPackage</li>
+            </ul>
+          </div>
+
+          <!-- Languages -->
+          <div class="skill-category">
+            <h3 class="skill-category-title"><i class='bx bx-world'></i> Languages</h3>
+            <ul class="skill-list">
+              <li class="skill-item">
+                <span class="skill-name">Arabic (Native)</span>
+                <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="width:100%"></div></div>
+              </li>
+              <li class="skill-item">
+                <span class="skill-name">French (Fluent)</span>
+                <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="width:95%"></div></div>
+              </li>
+              <li class="skill-item">
+                <span class="skill-name">English (Fluent)</span>
+                <div class="skill-bar" aria-hidden="true"><div class="skill-fill" style="width:90%"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Software & Utilities -->
+          <div class="skill-category">
+            <h3 class="skill-category-title"><i class='bx bx-cog'></i> Additional Tools</h3>
+            <ul class="skill-chips">
+              <li class="chip">AutoCAD</li>
+              <li class="chip">Total Station</li>
+              <li class="chip">TypeORM</li>
+              <li class="chip">UML</li>
+              <li class="chip">Trello</li>
+              <li class="chip">MS Office</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section experience">
+      <div class="container">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+          <!-- Experience 1 -->
+          <article class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="experience-title">Full Stack Developer</h3>
+              <p class="experience-company">Tanger Med Engineering</p>
+              <span class="experience-date">2025</span>
+              <ul class="experience-bullets">
+                <li>Led backend and frontend development for a port asset inspection web application used by multiple teams</li>
+                <li>Designed and implemented a relational PostgreSQL/PostGIS database to centralize asset records and spatial data</li>
+                <li>Developed a validation workflow to move inspection reports from operator to project manager with role-based access control</li>
+                <li>Integrated interactive mapping using OpenLayers to enable spatial queries and visual inspections on port infrastructure</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="badge">NestJS</span>
+                <span class="badge">Angular</span>
+                <span class="badge">PostgreSQL</span>
+                <span class="badge">PostGIS</span>
+                <span class="badge">TypeORM</span>
+                <span class="badge">OpenLayers</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Experience 2 -->
+          <article class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="experience-title">Full Stack Developer</h3>
+              <p class="experience-company">Horizon Tangiers Terminals S.A.</p>
+              <span class="experience-date">April - June 2023</span>
+              <ul class="experience-bullets">
+                <li>Contributed to automation of the billing system by building REST APIs and front-end components</li>
+                <li>Improved billing reliability and reduced manual processing time by 40%</li>
+                <li>Implemented backend services with Spring Boot and integrated a React front end</li>
+                <li>Managed document storage and retrieval using MongoDB for efficient data management</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="badge">Spring Boot</span>
+                <span class="badge">React</span>
+                <span class="badge">MongoDB</span>
+                <span class="badge">REST API</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Experience 3 -->
+          <article class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="experience-title">Urban Planning Observation</h3>
+              <p class="experience-company">RIUPA Tangier</p>
+              <span class="experience-date">July 2024</span>
+              <ul class="experience-bullets">
+                <li>Performed observational internship focused on the state of geomatics in Morocco</li>
+                <li>Assessed data acquisition practices, use cases, and institutional perspectives</li>
+                <li>Identified opportunities for improved spatial data workflows and technology adoption</li>
+                <li>Compiled comprehensive report on current GIS infrastructure and future development needs</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="badge">GIS Analysis</span>
+                <span class="badge">Urban Planning</span>
+                <span class="badge">Research</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+
+        <div class="project-filters" role="toolbar" aria-label="Project filters">
+          <button class="chip active" data-filter="all">All Projects</button>
+          <button class="chip" data-filter="gis">GIS & Remote Sensing</button>
+          <button class="chip" data-filter="dev">Web Development</button>
+          <button class="chip" data-filter="mobile">Mobile Apps</button>
+          <button class="chip" data-filter="tools">Tools & Automation</button>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card" data-category="gis">
+            <div class="project-media">
+              <div class="project-image-placeholder">
+                <i class='bx bx-map-alt'></i>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Atlas Mountains Deforestation Analysis</h3>
+              <span class="project-category">GIS & Remote Sensing</span>
+              <p class="project-description">Conducted 20-year land-cover change analysis using Landsat and Sentinel-2 time series to quantify forest loss. Employed NDVI/EVI indices and temporal change detection to map critical loss areas.</p>
+              <div class="project-tech">
+                <span class="badge">Google Earth Engine</span>
+                <span class="badge">Python</span>
+                <span class="badge">JavaScript</span>
+                <span class="badge">Remote Sensing</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card" data-category="mobile">
+            <div class="project-media">
+              <div class="project-image-placeholder">
+                <i class='bx bx-mobile'></i>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Saydaliati Android App</h3>
+              <span class="project-category">Mobile Development</span>
+              <p class="project-description">Developed mobile application for pharmacy route management and alert notifications. Includes geolocation, optimized route planning, and push notifications for improved operational logistics.</p>
+              <div class="project-tech">
+                <span class="badge">Java</span>
+                <span class="badge">Android Studio</span>
+                <span class="badge">Geolocation</span>
+                <span class="badge">Routing</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card" data-category="tools">
+            <div class="project-media">
+              <div class="project-image-placeholder">
+                <i class='bx bx-extension'></i>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">QGIS Plugin Development</h3>
+              <span class="project-category">Tools & Automation</span>
+              <p class="project-description">Built QGIS plugin that automates satellite image import and preprocessing. Provides user interface for batch operations and standardized geomatics workflows using PyQGIS API.</p>
+              <div class="project-tech">
+                <span class="badge">Python</span>
+                <span class="badge">PyQGIS</span>
+                <span class="badge">QGIS</span>
+                <span class="badge">Automation</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card" data-category="gis">
+            <div class="project-media">
+              <div class="project-image-placeholder">
+                <i class='bx bx-ruler'></i>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Topographic Survey - FST Parking</h3>
+              <span class="project-category">GIS & Surveying</span>
+              <p class="project-description">Completed full topographic survey using total station. Processed field coordinates to produce detailed technical plan in AutoCAD with precise as-built drawings and elevation models.</p>
+              <div class="project-tech">
+                <span class="badge">Total Station</span>
+                <span class="badge">AutoCAD</span>
+                <span class="badge">Surveying</span>
+                <span class="badge">CAD</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project-card" data-category="gis">
+            <div class="project-media" style="padding: 0;">
+              <!-- Replace 'your-gif-filename.gif' with your actual GIF file path -->
+              <img src="./assets/img/STEPO_nada.gif" alt="Multi-criteria site selection analysis visualization" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Multi-Criteria Site Selection</h3>
+              <span class="project-category">GIS Analysis</span>
+              <p class="project-description">Performed site suitability analysis for Stepo facility in Ouazzane using ArcGIS. Combined criteria including elevation, proximity to watercourses, residential areas, and flood risk to rank candidate sites.</p>
+              <div class="project-tech">
+                <span class="badge">ArcGIS</span>
+                <span class="badge">Spatial Analysis</span>
+                <span class="badge">Multi-Criteria</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="project-card" data-category="tools">
+            <div class="project-media">
+              <div class="project-image-placeholder">
+                <i class='bx bx-current-location'></i>
+              </div>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Coordinate Transformation Tool</h3>
+              <span class="project-category">Tools & Utilities</span>
+              <p class="project-description">Developed desktop application for precise conversions between geodetic and Cartesian coordinate systems. Supports multiple reference systems with geodetic precision calculations and intuitive GUI.</p>
+              <div class="project-tech">
+                <span class="badge">Python</span>
+                <span class="badge">Desktop GUI</span>
+                <span class="badge">Geodesy</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="grid-two">
+          <div class="contact-form-card card">
+            <h3 class="card-title">Send Me a Message</h3>
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input id="name" name="name" type="text" placeholder="John Doe" required>
+                <span class="form-error" id="err-name" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input id="email" name="email" type="email" placeholder="john@example.com" required>
+                <span class="form-error" id="err-email" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" aria-label="Subject">
+                  <option value="inquiry">General Inquiry</option>
+                  <option value="pfe">PFE Internship Opportunity</option>
+                  <option value="collaboration">Collaboration</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" placeholder="Your message here..." required></textarea>
+                <span class="form-error" id="err-message" aria-live="polite"></span>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary"><i class='bx bx-send'></i> Send Message</button>
+              </div>
+              <div id="form-status" role="status" aria-live="polite" class="form-status"></div>
+            </form>
+          </div>
+
+          <aside class="contact-info">
+            <div class="card">
+              <h3 class="card-title">Contact Information</h3>
+              <ul class="contact-list">
+                <li>
+                  <i class='bx bx-envelope'></i>
+                  <a href="mailto:khoussi.imane@gmail.com">khoussi.imane@gmail.com</a>
+                </li>
+                <li>
+                  <i class='bx bx-phone'></i>
+                  <a href="tel:+212669896995">+212 669 89 69 95</a>
+                </li>
+                <li>
+                  <i class='bx bxl-github'></i>
+                  <a href="https://github.com/imanekhoussi" target="_blank" rel="noopener">github.com/imanekhoussi</a>
+                </li>
+                <li>
+                  <i class='bx bx-map'></i>
+                  <span>Tangier, Morocco</span>
+                </li>
+              </ul>
+              <div style="margin-top: 24px; padding: 16px; background: rgba(0,179,166,0.08); border-left: 4px solid var(--color-accent); border-radius: 8px;">
+                <p style="margin: 0; font-weight: 600; color: var(--color-primary);">
+                  <i class='bx bx-calendar-check' style="vertical-align: middle;"></i> 
+                  Seeking PFE Internship
+                </p>
+                <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: var(--color-muted);">
+                  Available starting February 2026
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-note">&copy; <span id="footer-year"></span> Imane Khoussi. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/imanekhoussi" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // DOM elements
+      const navToggle = document.getElementById('nav-toggle');
+      const primaryNav = document.getElementById('primary-nav');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const footerYear = document.getElementById('footer-year');
+      const contactForm = document.getElementById('contact-form');
+      const projectsGrid = document.getElementById('projects-grid');
+      const filterButtons = document.querySelectorAll('.project-filters .chip');
+
+      // Set footer year
+      if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+      /* NAV TOGGLE (mobile) */
+      if (navToggle && primaryNav) {
+        navToggle.addEventListener('click', () => {
+          const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', String(!expanded));
+          primaryNav.classList.toggle('open');
+        });
+      }
+
+      /* SMOOTH SCROLL */
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const targetId = this.getAttribute('href').slice(1);
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (primaryNav && primaryNav.classList.contains('open')) {
+              primaryNav.classList.remove('open');
+              navToggle.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+      });
+
+      /* ACTIVE NAV LINK ON SCROLL */
+      const sections = document.querySelectorAll('section[id]');
+      const navObserverOptions = { root: null, rootMargin: '-40% 0px -40% 0px', threshold: 0 };
+      const navObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const id = entry.target.getAttribute('id');
+          const link = document.querySelector(`.nav-link[href="#${id}"]`);
+          if (link) {
+            if (entry.isIntersecting) {
+              document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+              link.classList.add('active');
+            }
+          }
+        });
+      }, navObserverOptions);
+      sections.forEach(sec => navObserver.observe(sec));
+
+      /* INTERSECTION OBSERVER FOR REVEAL ANIMATIONS */
+      const revealElements = document.querySelectorAll('.section, .card, .project-card, .timeline-item');
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      /* BASIC FORM VALIDATION */
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          
+          // Clear errors
+          const errName = document.getElementById('err-name');
+          const errEmail = document.getElementById('err-email');
+          const errMessage = document.getElementById('err-message');
+          if (errName) errName.textContent = '';
+          if (errEmail) errEmail.textContent = '';
+          if (errMessage) errMessage.textContent = '';
+
+          const name = contactForm.querySelector('#name');
+          const email = contactForm.querySelector('#email');
+          const message = contactForm.querySelector('#message');
+
+          let valid = true;
+          if (!name.value.trim()) {
+            document.getElementById('err-name').textContent = 'Please enter your name.';
+            valid = false;
+          }
+          if (!email.value.trim() || !/^\S+@\S+\.\S+$/.test(email.value)) {
+            document.getElementById('err-email').textContent = 'Please enter a valid email address.';
+            valid = false;
+          }
+          if (!message.value.trim()) {
+            document.getElementById('err-message').textContent = 'Please enter a message.';
+            valid = false;
+          }
+
+          if (!valid) {
+            return;
+          }
+
+          // Show success message
+          const status = document.getElementById('form-status');
+          if (status) {
+            status.textContent = '✓ Thank you! Your message has been sent successfully. I\'ll get back to you soon.';
+            status.className = 'form-status success';
+          }
+          
+          // Reset form
+          contactForm.reset();
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            if (status) {
+              status.style.display = 'none';
+            }
+          }, 5000);
+        });
+      }
+
+      /* PROJECT FILTERS */
+      if (filterButtons.length && projectsGrid) {
+        filterButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.getAttribute('data-filter');
+            const cards = projectsGrid.querySelectorAll('.project-card');
+            cards.forEach(card => {
+              const cat = card.getAttribute('data-category') || 'all';
+              if (filter === 'all' || cat === filter) {
+                card.style.display = '';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+        });
+      }
+
+      /* Animate skill bars on scroll */
+      const skillBars = document.querySelectorAll('.skill-fill');
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.width = entry.target.style.width;
+          }
+        });
+      }, { threshold: 0.5 });
+      skillBars.forEach(bar => skillObserver.observe(bar));
+    });
+  </script>
+</body>
 </html>

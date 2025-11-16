@@ -310,16 +310,40 @@ img {
 .work__container {
   row-gap: 2rem;
 }
-.work__img {
-  box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+
+/* NEW STYLES FOR PROJECT CARDS */
+.project-card {
+  background-color: #fff;
+  padding: 1.5rem;
   border-radius: 0.5rem;
-  overflow: hidden;
+  box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+  transition: transform 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
-.work__img img {
-  transition: 1s;
+
+.project-card:hover {
+  transform: translateY(-5px);
 }
-.work__img img:hover {
-  transform: scale(1.1);
+
+.project-title {
+  margin-bottom: var(--mb-2);
+  color: var(--first-color);
+  font-size: 1.1rem; /* Use a specific size */
+  font-weight: var(--font-semi);
+}
+
+.project-description {
+  font-size: var(--smaller-font-size);
+  margin-bottom: var(--mb-4);
+  flex-grow: 1;
+}
+
+.project-tech {
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-semi);
+  color: var(--second-color);
 }
 
 /* ===== CONTACT =====*/

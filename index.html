@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Imane Khoussi — Geoinformation Engineering & Full Stack Development</title>
-  <meta name="description" content="Portfolio of Imane Khoussi - Geoinformation Engineering student specializing in GIS, remote sensing, and full-stack development">
+  <meta name="description" content="Portfolio of Imane Khoussi - Geoinformation State Engineer specializing in GIS, remote sensing, and full-stack development">
   
   <!-- Icons CDN (BoxIcons) -->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -297,7 +297,33 @@
     .btn-ghost:hover{
       background: rgba(0,0,0,0.05);
     }
-
+/* Fullscreen Button */
+    .project-media {
+      position: relative; /* Ensures the button stays inside the image/video area */
+    }
+    .fullscreen-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(11, 61, 145, 0.7); /* Uses your primary color with transparency */
+      color: white;
+      border: none;
+      border-radius: 6px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      z-index: 10;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+    .fullscreen-btn:hover {
+      background: var(--color-accent);
+      transform: scale(1.1);
+    }
     /* Sections */
     .section{
       padding: var(--spacing-xl) 0;
@@ -800,7 +826,9 @@
           <li><a href="#home" class="nav-link">Home</a></li>
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li> <!-- NOUVEAU LIEN -->
           <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#certifications" class="nav-link">Certificates</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
@@ -816,7 +844,7 @@
         <div class="hero-content">
           <h1 class="hero-title">Imane <span class="accent">Khoussi</span></h1>
           <p class="hero-subtitle">Geoinformation Engineering & Full Stack Development</p>
-          <p class="hero-description">Third-year FST Tangier student combining GIS expertise with full-stack development to build impactful spatial applications. Specialized in mapping interfaces, spatial databases, and automated geoprocessing workflows.</p>
+          <p class="hero-description">Geoinformation State Engineer combining geospatial science expertise with full-stack software development. Specialized in AI-driven spatial analysis, multi-sensor photogrammetry, and building scalable WebSIG applications.</p>
           <div class="hero-ctas">
             <a href="#contact" class="btn btn-primary"><i class='bx bx-envelope'></i> Contact Me</a>
             <a href="#projects" class="btn btn-outline"><i class='bx bx-folder-open'></i> View Projects</a>
@@ -824,7 +852,7 @@
           <div class="hero-meta">
             <span class="meta-item"><i class='bx bx-envelope'></i> khoussi.imane@gmail.com</span>
             <span class="meta-item"><i class='bx bx-phone'></i> +212 669 89 69 95</span>
-            <span class="meta-item"><i class='bx bx-calendar'></i> Available Feb 2026</span>
+            <span class="meta-item"><i class='bx bx-briefcase'></i> Open to Opportunities</span>
           </div>
         </div>
 
@@ -842,7 +870,7 @@
         <h2 class="section-title">About Me</h2>
         <div class="grid-two">
           <div class="about-text">
-            <p>I'm a third-year Geoinformation Engineering student at FST Tangier with a strong foundation in both geospatial science and full-stack software development. I combine hands-on experience in GIS and remote sensing with practical development skills to build spatial applications that solve real operational problems.</p>
+            <p>I am a Geoinformation State Engineer and recent graduate from FST Tangier, with a strong foundation in both geospatial science and full-stack software development. I combine hands-on experience in AI, multi-sensor remote sensing, and practical development skills to build spatial applications that solve real operational problems.</p>
             <p>Driven by applied research and end-user impact, I've delivered projects ranging from temporal land-cover analysis to production GIS tools and mobile routing apps. I'm comfortable working across the stack — from geodata acquisition and preprocessing through spatial analysis to designing web and mobile front ends that make geospatial insights actionable.</p>
             <p>I'm particularly experienced in map-based interfaces, spatial databases (PostGIS), and automated geoprocessing workflows. My technical toolkit spans from QGIS and ArcGIS to modern web frameworks like NestJS, Angular, and React, allowing me to bridge the gap between geospatial data and user-friendly applications.</p>
           </div>
@@ -851,10 +879,9 @@
               <h3 class="card-title">Quick Facts</h3>
               <ul class="facts-list">
                 <li><strong>Institution:</strong> FST Tangier</li>
-                <li><strong>Degree:</strong> Geoinformation Engineering</li>
-                <li><strong>Year:</strong> Third Year</li>
+                <li><strong>Degree:</strong> State Engineer in Geoinformation</li>
                 <li><strong>Location:</strong> Tangier, Morocco</li>
-                <li><strong>Availability:</strong> Feb 2026 (PFE)</li>
+                <li><strong>Availability:</strong> Immediate</li>
               </ul>
               <a class="btn btn-secondary" href="https://github.com/imanekhoussi" target="_blank" rel="noopener"><i class='bx bxl-github'></i> GitHub</a>
             </div>
@@ -965,12 +992,69 @@
         </div>
       </div>
     </section>
+<!-- Education -->
+    <section id="education" class="section experience">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+          
+          <!-- Diplôme d'ingénieur -->
+          <article class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="experience-title">State Engineering Degree in Geoinformation</h3>
+              <p class="experience-company">FST Tanger</p>
+              <span class="experience-date">2023 - 2026</span>
+            </div>
+          </article>
 
+          <!-- Licence -->
+          <article class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="experience-title">Bachelor's Degree in Computer Engineering</h3>
+              <p class="experience-company">FST Tanger</p>
+              <span class="experience-date">2022 - 2023</span>
+            </div>
+          </article>
+
+          <!-- Baccalauréat -->
+          <article class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="experience-title">Baccalaureate in Physical Sciences</h3>
+              <p class="experience-company">Lycée Abi AL Abass Sebti Tanger</p>
+              <span class="experience-date">2019</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
     <!-- Experience -->
     <section id="experience" class="section experience">
       <div class="container">
         <h2 class="section-title">Professional Experience</h2>
         <div class="timeline">
+          <!-- Experience PFE -->
+          <article class="timeline-item">
+            <div class="timeline-content">
+              <h3 class="experience-title">Geoinformation Engineer (PFE)</h3>
+              <p class="experience-company">Drone Globe, Sala Al Jadida</p>
+              <span class="experience-date">February - June 2026</span>
+              <ul class="experience-bullets">
+                <li>Led an intelligent irrigation optimization project for olive orchards using AI and multi-sensor drone imagery (RGB + thermal).</li>
+                <li>Processed photogrammetric data for 968 trees across multiple missions using Pix4D and Metashape, calculating the Crop Water Stress Index (CWSI).</li>
+                <li>Trained machine learning models including KNN for stress classification (F1=0.752) and Ridge regression (R&sup2;=0.762) for yield prediction based on FAO-56 data.</li>
+                <li>Developed a custom QGIS plugin ("OliveStressAnalyzer") in Python and a full-stack WebSIG dashboard (GeoOlive) using React and FastAPI.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="badge">Python</span>
+                <span class="badge">QGIS/PyQGIS</span>
+                <span class="badge">React</span>
+                <span class="badge">FastAPI</span>
+                <span class="badge">Machine Learning</span>
+              </div>
+            </div>
+          </article>
+
           <!-- Experience 1 -->
           <article class="timeline-item">
             <div class="timeline-content">
@@ -1038,6 +1122,51 @@
       </div>
     </section>
 
+    <!-- Certifications -->
+   <!-- Certifications -->
+    <section id="certifications" class="section experience">
+      <div class="container">
+        <h2 class="section-title">Certifications</h2>
+        <div class="projects-grid">
+          
+          <!-- Certificate 1: Drone Globe -->
+          <article class="project-card">
+            <div class="project-media" style="padding: 0; height: 250px; background: #fff; border-bottom: 1px solid rgba(16,24,40,0.08);">
+              <!-- Ensure you save your PDF as a JPG/PNG in the assets folder -->
+              <img src="./assets/certificate_Imane_KHOUSSI.png" alt="Drone Globe Certificate" class="clickable-img" style="width: 100%; height: 100%; object-fit: contain; padding: 10px;" onclick="openModal(this.src)">
+            </div>
+            <div class="project-body">
+              <h3 class="card-title" style="margin-bottom: 4px;">Professional Drone Pilot</h3>
+              <span class="experience-company" style="font-weight: 600; color: var(--color-secondary);">DRONE GLOBE</span>
+              <br>
+              <span class="experience-date" style="margin-top: 8px;">June 2026</span>
+              <p class="project-description" style="margin-top: 12px;">
+                Successfully completed various professional drone piloting scenarios (S1, S2, S3, and S4) and photogrammetry.
+              </p>
+            </div>
+          </article>
+
+          <!-- Certificate 2: Esri Cartography -->
+          <article class="project-card">
+            <div class="project-media" style="padding: 0; height: 250px; background: #fff; border-bottom: 1px solid rgba(16,24,40,0.08);">
+              <!-- Ensure you save your PDF as a JPG/PNG in the assets folder -->
+              <img src="./assets/Cartography._Certificate_10132025.png" alt="Esri Cartography Certificate" class="clickable-img" style="width: 100%; height: 100%; object-fit: contain; padding: 10px;" onclick="openModal(this.src)">
+            </div>
+            <div class="project-body">
+              <h3 class="card-title" style="margin-bottom: 4px;">Cartography MOOC</h3>
+              <span class="experience-company" style="font-weight: 600; color: var(--color-secondary);">Esri</span>
+              <br>
+              <span class="experience-date" style="margin-top: 8px;">October 13, 2025</span>
+              <p class="project-description" style="margin-top: 12px;">
+                Completed a comprehensive 6-week course focused on spatial visualization, modern map design, and GIS mapping techniques[cite: 4].
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Projects -->
     <section id="projects" class="section projects">
       <div class="container">
@@ -1052,7 +1181,96 @@
         </div>
 
         <div class="projects-grid" id="projects-grid">
-          <!-- Project 1 -->
+          
+          <!-- Featured Project: QGIS Plugin -->
+          <article class="project-card" data-category="tools">
+            <div class="project-media" style="padding: 0;">
+              <img src="./assets/canopy_thermal_plugin.png" alt="OliveStressAnalyzer PyQGIS plugin interface" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">OliveStressAnalyzer PyQGIS Plugin</h3>
+              <span class="project-category">Tools & Automation</span>
+              <p class="project-description">Developed a custom Python plugin for QGIS to automate multi-raster spatial statistics, shapefile processing, and Canopy Thermal Analyzer workflows for agricultural monitoring.</p>
+              <div class="project-tech">
+                <span class="badge">Python</span>
+                <span class="badge">PyQGIS</span>
+                <span class="badge">Qt Designer</span>
+                <span class="badge">Rasterio</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Featured Project: WebSIG Dashboard -->
+          <article class="project-card" data-category="dev">
+            <div class="project-media" style="padding: 0; background: #000;">
+              <!-- Added the correct ID, autoplay attributes, and object-fit: contain -->
+              <video 
+                id="geoolive-video"
+                src="./assets/geoolive_video.mp4" 
+                poster="./assets/dashboard_preview.png" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                style="width: 100%; height: 100%; object-fit: contain;">
+                Your browser does not support the video tag.
+              </video>
+              
+              <!-- Updated the onclick to match the new video ID -->
+              <button class="fullscreen-btn" onclick="openFullscreen('geoolive-video')" aria-label="View Fullscreen" title="View Fullscreen">
+                <i class='bx bx-fullscreen'></i>
+              </button>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">GeoOlive WebSIG Dashboard</h3>
+              <span class="project-category">Web Development</span>
+              <p class="project-description">Built a full-stack WebSIG platform for interactive tree stress mapping and spatial water balance calculations, integrating drone thermal data with machine learning predictions.</p>
+              <div class="project-tech">
+                <span class="badge">React</span>
+                <span class="badge">FastAPI</span>
+                <span class="badge">Leaflet</span>
+                <span class="badge">PostGIS</span>
+              </div>
+              <div class="project-actions" style="margin-top: auto; padding-top: 12px;">
+                <a href="https://github.com/imanekhoussi/websig-oliviers" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem;">
+                  <i class='bx bxl-github'></i> View Code & Screenshots
+                </a>
+              </div>
+            </div>
+          </article>
+<!-- Featured Project: Port Asset Inspection -->
+          <article class="project-card" data-category="dev">
+            <div class="project-media" style="padding: 0; background: #000;">
+              <!-- Silent looping video to show the interface -->
+              <video 
+                src="./assets/tme_video.mp4" 
+                poster="./assets/tme_preview.png" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                style="width: 100%; height: 100%; object-fit: contain;">
+              </video>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Port Asset Inspection WebSIG</h3>
+              <span class="project-category">Full-Stack & GIS</span>
+              <p class="project-description">Web GIS application developed to manage port asset inspections. Integrates a validation workflow (from operator to project manager) and interactive mapping for spatial queries[cite: 1, 2].</p>
+              <div class="project-tech">
+                <span class="badge">NestJS</span>
+                <span class="badge">Angular</span>
+                <span class="badge">PostGIS</span>
+                <span class="badge">OpenLayers</span>
+              </div>
+              <div class="project-actions" style="margin-top: auto; padding-top: 12px;">
+                <!-- Link to your GitHub source code -->
+                <a href="https://github.com/imanekhoussi/gestion-inspections-portuaires" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.85rem;">
+                  <i class='bx bxl-github'></i> View Code & Video
+                </a>
+              </div>
+            </div>
+          </article>
+          <!-- Project 1 
           <article class="project-card" data-category="gis">
             <div class="project-media">
               <div class="project-image-placeholder">
@@ -1072,7 +1290,7 @@
             </div>
           </article>
 
-          <!-- Project 2 -->
+          Project 2 
           <article class="project-card" data-category="mobile">
             <div class="project-media">
               <div class="project-image-placeholder">
@@ -1092,7 +1310,7 @@
             </div>
           </article>
 
-          <!-- Project 3 -->
+          Project 3 
           <article class="project-card" data-category="tools">
             <div class="project-media">
               <div class="project-image-placeholder">
@@ -1112,7 +1330,7 @@
             </div>
           </article>
 
-          <!-- Project 4 -->
+          Project 4 
           <article class="project-card" data-category="gis">
             <div class="project-media">
               <div class="project-image-placeholder">
@@ -1131,12 +1349,19 @@
               </div>
             </div>
           </article>
-
+-->
           <!-- Project 5 -->
           <article class="project-card" data-category="gis">
-            <div class="project-media" style="padding: 0;">
-              <!-- Replace 'your-gif-filename.gif' with your actual GIF file path -->
-              <img src="./assets/img/STEPO_nada.gif" alt="Multi-criteria site selection analysis visualization" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="project-media" style="padding: 0; background: #000;">
+              <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="./assets/STEPO_nada.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
             </div>
             <div class="project-body">
               <h3 class="project-title">Multi-Criteria Site Selection</h3>
@@ -1149,8 +1374,8 @@
               </div>
             </div>
           </article>
-
-          <!-- Project 6 -->
+<!--
+          Project 6 
           <article class="project-card" data-category="tools">
             <div class="project-media">
               <div class="project-image-placeholder">
@@ -1168,6 +1393,76 @@
               </div>
             </div>
           </article>
+          -->
+        </div>
+      </div>
+    </section>
+    <!-- Maps Gallery -->
+    <section id="maps" class="section projects">
+      <div class="container">
+        <h2 class="section-title">Cartography & Spatial Analysis</h2>
+        <p style="text-align: center; color: var(--color-muted); margin-bottom: var(--spacing-lg);">
+          A selection of spatial analyses, drone-derived surface models, and thematic maps created for geoinformation and agricultural monitoring projects. Click any map to expand.
+        </p>
+
+        <div class="projects-grid">
+          
+          <!-- Map 1: Localization -->
+          <article class="project-card">
+            <div class="project-media" style="padding: 0; height: 250px; background: #fff; border-bottom: 1px solid rgba(16,24,40,0.08);">
+              <img src="./assets/carte_zone2.png" alt="Study Area Localization Map" class="clickable-img" style="width: 100%; height: 100%; object-fit: contain;" onclick="openModal(this.src)">
+            </div>
+            <div class="project-body">
+              <h3 class="card-title" style="margin-bottom: 4px; font-size: 1.15rem;">Study Area Localization</h3>
+              <span class="project-category">QGIS / Mapping</span>
+              <p class="project-description" style="margin-top: 12px; font-size: 0.95rem;">
+                Geographic localization map detailing the specific study area situated in the commune of Aïn Tizgha, within the Benslimane Province of Morocco[cite: 5].
+              </p>
+            </div>
+          </article>
+
+          <!-- Map 2: DSM Difference -->
+          <article class="project-card">
+            <div class="project-media" style="padding: 0; height: 250px; background: #fff; border-bottom: 1px solid rgba(16,24,40,0.08);">
+              <img src="./assets/diff_dsm_carte_finale.png" alt="DSM Difference Map" class="clickable-img" style="width: 100%; height: 100%; object-fit: contain;;" onclick="openModal(this.src)">
+            </div>
+            <div class="project-body">
+              <h3 class="card-title" style="margin-bottom: 4px; font-size: 1.15rem;">DSM Difference Analysis</h3>
+              <span class="project-category">Photogrammetry / Spatial Analysis</span>
+              <p class="project-description" style="margin-top: 12px; font-size: 0.95rem;">
+                Digital Surface Model (DSM) difference map comparing Mission 1 (RGB) and Mission 2 (Multispectral) data captured between April 1 and April 28, 2026, to analyze canopy volume changes[cite: 6].
+              </p>
+            </div>
+          </article>
+
+          <!-- Map 3: CWSI Mission 1 -->
+          <article class="project-card">
+            <div class="project-media" style="padding: 0; height: 250px; background: #fff; border-bottom: 1px solid rgba(16,24,40,0.08);">
+              <img src="./assets/cwsi_carte_mission1_01042026.png" alt="Water Stress Map - Mission 1" class="clickable-img" style="width: 100%; height: 100%;object-fit: contain;" onclick="openModal(this.src)">
+            </div>
+            <div class="project-body">
+              <h3 class="card-title" style="margin-bottom: 4px; font-size: 1.15rem;">CWSI Mapping (Mission 1)</h3>
+              <span class="project-category">Python / Data Viz</span>
+              <p class="project-description" style="margin-top: 12px; font-size: 0.95rem;">
+                Point-based visualization mapping the Crop Water Stress Index (CWSI) per individual tree in the Aïn Tizgha orchard, captured on April 1, 2026. Stress levels are categorized from none (≤ 0.20) to severe (> 0.80)[cite: 8].
+              </p>
+            </div>
+          </article>
+
+          <!-- Map 4: CWSI Mission 2 -->
+          <article class="project-card">
+            <div class="project-media" style="padding: 0; height: 250px; background: #fff; border-bottom: 1px solid rgba(16,24,40,0.08);">
+              <img src="./assets/cwsi_carte_mission2_28042026.png" alt="Water Stress Map - Mission 2" class="clickable-img" style="width: 100%; height: 100%; object-fit: contain;" onclick="openModal(this.src)">
+            </div>
+            <div class="project-body">
+              <h3 class="card-title" style="margin-bottom: 4px; font-size: 1.15rem;">CWSI Mapping (Mission 2)</h3>
+              <span class="project-category">Python / Data Viz</span>
+              <p class="project-description" style="margin-top: 12px; font-size: 0.95rem;">
+                Follow-up Crop Water Stress Index (CWSI) mapping for the same Aïn Tizgha orchard on April 28, 2026[cite: 7]. This allows for temporal comparison of water stress evolution and the effectiveness of irrigation interventions.
+              </p>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -1196,7 +1491,6 @@
                 <label for="subject">Subject</label>
                 <select id="subject" name="subject" aria-label="Subject">
                   <option value="inquiry">General Inquiry</option>
-                  <option value="pfe">PFE Internship Opportunity</option>
                   <option value="collaboration">Collaboration</option>
                   <option value="other">Other</option>
                 </select>
@@ -1236,15 +1530,6 @@
                   <span>Tangier, Morocco</span>
                 </li>
               </ul>
-              <div style="margin-top: 24px; padding: 16px; background: rgba(0,179,166,0.08); border-left: 4px solid var(--color-accent); border-radius: 8px;">
-                <p style="margin: 0; font-weight: 600; color: var(--color-primary);">
-                  <i class='bx bx-calendar-check' style="vertical-align: middle;"></i> 
-                  Seeking PFE Internship
-                </p>
-                <p style="margin: 8px 0 0 0; font-size: 0.95rem; color: var(--color-muted);">
-                  Available starting February 2026
-                </p>
-              </div>
             </div>
           </aside>
         </div>
@@ -1415,6 +1700,25 @@
       }, { threshold: 0.5 });
       skillBars.forEach(bar => skillObserver.observe(bar));
     });
+    /* FULLSCREEN MEDIA FUNCTION */
+      window.openFullscreen = function(elementId) {
+        const elem = document.getElementById(elementId);
+        if (!elem) return;
+        
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+          elem.msRequestFullscreen();
+        }
+        
+        // Optional: If it's a video, unmute it and show controls when in fullscreen
+        if (elem.tagName.toLowerCase() === 'video') {
+          elem.controls = true;
+          elem.muted = false;
+        }
+      };
   </script>
 </body>
 </html>

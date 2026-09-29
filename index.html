@@ -713,6 +713,12 @@
       color: var(--color-secondary);
       border: 1px solid var(--color-secondary);
     }
+    .form-status.error {
+  display: block;
+  background: rgba(220,38,38,0.1);
+  color: #DC2626;
+  border: 1px solid #DC2626;
+}
     .contact-info .card {
       padding: var(--spacing-lg);
     }
@@ -1203,24 +1209,15 @@
           <!-- Featured Project: WebSIG Dashboard -->
           <article class="project-card" data-category="dev">
             <div class="project-media" style="padding: 0; background: #000;">
-              <!-- Added the correct ID, autoplay attributes, and object-fit: contain -->
-              <video 
-                id="geoolive-video"
-                src="./assets/geoolive_video.mp4" 
-                poster="./assets/dashboard_preview.png" 
-                autoplay 
-                muted 
-                loop 
-                playsinline
-                style="width: 100%; height: 100%; object-fit: contain;">
-                Your browser does not support the video tag.
-              </video>
-              
-              <!-- Updated the onclick to match the new video ID -->
-              <button class="fullscreen-btn" onclick="openFullscreen('geoolive-video')" aria-label="View Fullscreen" title="View Fullscreen">
-                <i class='bx bx-fullscreen'></i>
-              </button>
-            </div>
+  <iframe
+    src="https://www.youtube.com/embed/hJVx4W0j3YY"
+    title="GeoOlive WebSIG Dashboard"
+    style="width: 100%; height: 100%; border: 0;"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
             <div class="project-body">
               <h3 class="project-title">GeoOlive WebSIG Dashboard</h3>
               <span class="project-category">Web Development</span>
@@ -1241,17 +1238,15 @@
 <!-- Featured Project: Port Asset Inspection -->
           <article class="project-card" data-category="dev">
             <div class="project-media" style="padding: 0; background: #000;">
-              <!-- Silent looping video to show the interface -->
-              <video 
-                src="./assets/tme_video.mp4" 
-                poster="./assets/tme_preview.png" 
-                autoplay 
-                muted 
-                loop 
-                playsinline
-                style="width: 100%; height: 100%; object-fit: contain;">
-              </video>
-            </div>
+  <iframe
+    src="https://www.youtube.com/embed/aisUt5_GM-o"
+    title="Port Asset Inspection WebSIG"
+    style="width: 100%; height: 100%; border: 0;"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
             <div class="project-body">
               <h3 class="project-title">Port Asset Inspection WebSIG</h3>
               <span class="project-category">Full-Stack & GIS</span>
@@ -1353,16 +1348,15 @@
           <!-- Project 5 -->
           <article class="project-card" data-category="gis">
             <div class="project-media" style="padding: 0; background: #000;">
-              <video 
-                autoplay 
-                muted 
-                loop 
-                playsinline
-                style="width: 100%; height: 100%; object-fit: cover;">
-                <source src="./assets/STEPO_nada.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
+  <iframe
+    src="https://www.youtube.com/embed/Gagw-nKtAB0"
+    title="Multi-Criteria Site Selection"
+    style="width: 100%; height: 100%; border: 0;"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</div>
             <div class="project-body">
               <h3 class="project-title">Multi-Criteria Site Selection</h3>
               <span class="project-category">GIS Analysis</span>
@@ -1652,20 +1646,26 @@
 
           // Show success message
           const status = document.getElementById('form-status');
-          if (status) {
-            status.textContent = '✓ Thank you! Your message has been sent successfully. I\'ll get back to you soon.';
-            status.className = 'form-status success';
-          }
-          
-          // Reset form
-          contactForm.reset();
-          
-          // Hide success message after 5 seconds
-          setTimeout(() => {
-            if (status) {
-              status.style.display = 'none';
-            }
-          }, 5000);
+const btn = contactForm.querySelector('button[type="submit"]');
+btn.disabled = true;
+status.style.display = '';
+
+fetch('https://formspree.io/f/moevrqdb', {
+  method: 'POST',
+  body: new FormData(contactForm),
+  headers: { 'Accept': 'application/json' }
+})
+  .then(res => {
+    if (!res.ok) throw new Error();
+    status.textContent = "✓ Thank you! Your message has been sent. I'll get back to you soon.";
+    status.className = 'form-status success';
+    contactForm.reset();
+  })
+  .catch(() => {
+    status.textContent = 'Something went wrong. Please email me directly at khoussi.imane@gmail.com.';
+    status.className = 'form-status error';
+  })
+  .finally(() => { btn.disabled = false; });
         });
       }
 
